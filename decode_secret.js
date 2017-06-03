@@ -9,23 +9,13 @@ function encode(str) {
 	.join('');
 }
 
-function expmod( base, exp, mod ){
-  if (exp == 0) return 1;
-  if (exp % 2 == 0){
-    return Math.pow( expmod( base, (exp / 2), mod), 2) % mod;
-  }
-  else {
-    return (base * expmod( base, (exp - 1), mod)) % mod;
-  }
-}
-
 function decode(str) {
 	let alphabet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789.,? '.split(''),
 		symbols = '!@#$%^&*()_+-'.split('');
 	
 	const calcPos = (letter, strPos) => {
 		for (var i = 1; ; i++) {
-			var sub = (i * expmod(2, strPos + 1, 67) % 67);
+			var sub = (i * ((2 ** strPos) % 67) % 67);
 			if ((alphabet.indexOf(letter) + 1) == sub) break;
 		}
 		return i - 1;
