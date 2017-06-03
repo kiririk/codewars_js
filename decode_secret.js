@@ -49,5 +49,5 @@ device.decode = function (w) {
   return w.replace(/./g, function(c, i) {
      return chrs[tbl.map(function(a) { return a[i%66]; }).indexOf(c)] || c;
   });
-  */
 }
+*/
